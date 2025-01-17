@@ -12,6 +12,7 @@ app.use('/js', express.static(path.join(__dirname, 'js')));
 app.use('/styles', express.static(path.join(__dirname, 'styles')));
 app.use('/views', express.static(path.join(__dirname, 'views')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/icons', express.static(path.join(__dirname, 'icons')));
 app.use(express.static('public'));
 
 // API routes
