@@ -189,3 +189,42 @@ button:hover {
     color: #ff9318;
     text-decoration: underline;
 }
+
+/* Social Sharing Section */
+.social-sharing {
+    position: absolute; /* Position it relative to the page */
+    top: 20px; /* Distance from the top of the page */
+    right: 20px; /* Distance from the right of the page */
+    display: flex; /* Arrange icons horizontally */
+    gap: 10px; /* Space between buttons */
+    z-index: 10; /* Ensure it's above other elements */
+}
+
+.social-btn {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #2a2a2a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for a better look */
+}
+
+.social-btn img {
+    width: 24px;
+    height: 24px;
+    filter: invert(1);
+}
+
+.social-btn.discord:hover {
+    background-color: #5865F2; /* Discord brand color */
+    transform: scale(1.1);
+}
+
+.social-btn.instagram:hover {
+    background-color: #E1306C; /* Instagram brand color */
+    transform: scale(1.1);
+}
