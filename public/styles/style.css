@@ -1,63 +1,126 @@
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #1a1a1a;
-    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    flex-direction: column;
+    font-family: 'Poppins', Arial, sans-serif;
+    color: #e0e0e0;
+    position: relative;
+    overflow: hidden; /* Ensures no scrollbars if image overflows */
 }
 
-.container {
-    text-align: center;
+/* Background Image */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/images/dust2-img.webp') center/cover no-repeat, linear-gradient(to bottom right, #141414, #1e1e1e);
+    opacity: 0.6; /* Reduce the image's opacity */
+    z-index: -2;
+    filter: blur(2px); /* Add a slight blur to the background image */
 }
 
-.stats {
-    background-color: #333;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 400px;
-    margin: 20px;
+/* Dark Overlay */
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Add a darker overlay */
+    z-index: -1;
 }
 
-.match-history {
-    background-color: #333;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 600px;
-    margin: 20px auto;
-}
-
+/* Login Container */
 .login-container {
-    max-width: 400px;
-    margin: 100px auto;
-    padding: 20px;
+    background: rgba(28, 28, 28, 0.95); /* Slight transparency for container */
+    padding: 50px 60px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     text-align: center;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 500px;
+    z-index: 1; /* Ensure it appears above the background */
 }
 
-.login-container input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+/* Subtitle */
+.subtitle {
+    font-size: 1.5em;
+    color: #cccccc;
+    margin-bottom: 20px;
 }
 
-.login-container button {
+/* Title */
+.title {
+    font-size: 2.5em;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+
+/* Form Input */
+form input[type="text"] {
     width: 100%;
-    padding: 10px;
-    background: #4CAF50;
-    color: white;
+    padding: 18px;
+    font-size: 1.2em;
+    color: #e0e0e0;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+form input[type="text"]:focus {
+    border-color: #FF8A00 ;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #FF8A00 ;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.login-container button:hover {
-    background: #45a049;
+button:hover {
+    background-color: #ff9318;
+    box-shadow: 0 0 12px #FF8A00;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    .login-container {
+        width: 90%;
+    }
+
+    .title {
+        font-size: 2em;
+    }
+
+    .subtitle {
+        font-size: 1.2em;
+    }
+
+    form input[type="text"] {
+        font-size: 1em;
+        padding: 15px;
+    }
+
+    button {
+        font-size: 1em;
+        padding: 15px;
+    }
 }
