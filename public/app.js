@@ -1,4 +1,9 @@
-const playerId = '76561198930892964';
+const urlParams = new URLSearchParams(window.location.search);
+const playerId = urlParams.get('id');
+
+if(!playerId) {
+    window.location.href = 'index.html';
+}
 
 function fetchPlayerStats() {
     const statsContainer = document.getElementById('stats');
