@@ -1,12 +1,16 @@
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
+const path = require('path');
 
 const app = express();
 const PORT = 3000;
 const API_KEY = 'F0228B3CBFB9076503B108D773277E8A';
 
 app.use(cors());
+app.use('/js', express.static(path.join(__dirname, 'js')));
+app.use('/styles', express.static(path.join(__dirname, 'styles')));
+app.use('/views', express.static(path.join(__dirname, 'views')));
 app.use(express.static('public'));
 
 // API routes
