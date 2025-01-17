@@ -170,3 +170,22 @@ button:hover {
 .features li span {
     color: #cccccc;
 }
+
+.secondary-message {
+    margin-top: 15px;
+    font-size: 1em;
+    color: #cccccc;
+    text-align: center;
+}
+
+.secondary-message a {
+    color: #FF8A00;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.secondary-message a:hover {
+    color: #ff9318;
+    text-decoration: underline;
+}
