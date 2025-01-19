@@ -30,12 +30,12 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); 
+    background: rgba(0, 0, 0, 0.6);
     z-index: -1;
 }
 
 .login-container {
-    background: rgba(28, 28, 28, 0.95); 
+    background: rgba(28, 28, 28, 0.95);
     padding: 50px 60px;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
@@ -57,7 +57,8 @@ body::after {
     color: #ffffff;
 }
 
-form input[type="text"], button {
+form input[type="text"],
+button {
     box-sizing: border-box;
 }
 
@@ -190,14 +191,13 @@ button:hover {
     text-decoration: underline;
 }
 
-/* Social Sharing Section */
 .social-sharing {
-    position: absolute; /* Position it relative to the page */
-    top: 20px; /* Distance from the top of the page */
-    right: 20px; /* Distance from the right of the page */
-    display: flex; /* Arrange icons horizontally */
-    gap: 10px; /* Space between buttons */
-    z-index: 10; /* Ensure it's above other elements */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 10;
 }
 
 .social-btn {
@@ -210,7 +210,7 @@ button:hover {
     justify-content: center;
     align-items: center;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for a better look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .social-btn img {
@@ -220,11 +220,11 @@ button:hover {
 }
 
 .social-btn.discord:hover {
-    background-color: #5865F2; /* Discord brand color */
+    background-color: #5865F2;
     transform: scale(1.1);
 }
 
 .social-btn.instagram:hover {
-    background-color: #E1306C; /* Instagram brand color */
+    background-color: #E1306C;
     transform: scale(1.1);
 }

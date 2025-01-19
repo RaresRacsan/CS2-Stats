@@ -1,0 +1,71 @@
+body {
+    overflow-y: auto;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(28, 28, 28, 0.95);
+    color: white;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+    height: auto;
+    min-height: 100vh;
+    width: 100%;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+section {
+    background: rgba(28, 28, 28, 0.95);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow-y: auto;
+    max-height: calc(100vh - 40px);
+    border: 1px solid #FF8A00;
+    display: flex; 
+    gap: 20px;  
+}
+
+.section-1, .section-2, .section-3 {
+    margin-top: 10px;
+}
+
+section:hover {
+    border: 1px solid #ffa238;
+    background: rgba(40, 32, 28, 0.95);
+}
+
+#player-info, #recent-games, #stats, #map-stats {
+    height: auto;
+    width: 100%;
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+.general-stats, .weapon-stats {
+    padding: 20px;
+    border-radius: 8px;
+}
+
+#player-info, #recent-games {
+    flex: 1;  
+    padding: 20px;
+    border-radius: 8px;
+    min-height: 200px; 
+}
+
+.section-2 {
+    max-height: none;
+    overflow-y: visible;
+    height: auto;
+}

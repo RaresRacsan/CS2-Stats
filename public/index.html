@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,29 +8,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles/style.css">
 </head>
+
 <body>
     <div class="login-container">
         <div class="social-sharing">
-            <a href="https://discordapp.com/users/553950676246331412" class="social-btn discord" target="_blank" title="Share on Discord">
+            <a href="https://discordapp.com/users/553950676246331412" class="social-btn discord" target="_blank"
+                title="Share on Discord">
                 <img src="/icons/discord.png" alt="Discord">
             </a>
-            <a href="https://www.instagram.com/raresracsan/" class="social-btn instagram" target="_blank" title="Share on Instagram">
+            <a href="https://www.instagram.com/raresracsan/" class="social-btn instagram" target="_blank"
+                title="Share on Instagram">
                 <img src="/icons/instagram.png" alt="Instagram">
             </a>
         </div>
         <h2 class="subtitle">Check your CS2 skills now with one click</h2>
         <h1 class="title">CS2 Stats Tracker</h1>
         <form id="steamIdForm" onsubmit="handleSubmit(event)">
-            <input 
-                type="text" 
-                id="steamId" 
-                placeholder="Enter Steam ID"
-                required
-            >
+            <input type="text" id="steamId" placeholder="Enter Steam ID" required>
             <button type="submit">View Stats</button>
         </form>
         <p class="secondary-message">
-            Don't know your Steam ID? <a href="https://tradeit.gg/steam-id-finder" target="_blank">Click here to find it.</a>
+            Don't know your Steam ID? <a href="https://tradeit.gg/steam-id-finder" target="_blank">Click here to find
+                it.</a>
         </p>
         <div class="features">
             <h3>Why Use This Tool?</h3>
@@ -49,7 +49,7 @@
             </ul>
         </div>
     </div>
-    
+
 
     <script>
         function handleSubmit(event) {
@@ -59,4 +59,5 @@
         }
     </script>
 </body>
+
 </html>
