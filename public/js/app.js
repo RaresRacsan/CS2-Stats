@@ -30,7 +30,7 @@ function fetchPlayerStats() {
             statsContainer.innerHTML = `
                 <div class="stats-container">
                     <div class="general-stats">
-                        <h2>Player Stats Overview</h2>
+                        <h3>Player Stats Overview</h3>
                         <p>Total Matches: ${findStat('total_matches_played')}</p>
                         <p>Matches Won: ${findStat('total_matches_won')}</p>
                         <p>Win Rate: ${((findStat('total_matches_won') / findStat('total_matches_played')) * 100).toFixed(1)}%</p>
@@ -52,14 +52,13 @@ function fetchPlayerStats() {
                         <h3>Top Weapons</h3>
                         <p>AK-47: ${findStat('total_kills_ak47')} kills</p>
                         <p>AWP: ${findStat('total_kills_awp')} kills</p>
-                        <p>M4A1: ${findStat('total_kills_m4a1')} kills</p>
+                        <p>M4A4: ${findStat('total_kills_m4a1')} kills</p>
                         <p>Desert Eagle: ${findStat('total_kills_deagle')} kills</p>
                         <p>Knife: ${findStat('total_kills_knife')} kills</p>
                         <p>Grenade: ${findStat('total_kills_hegrenade')} kills</p>
                         <p>Glock: ${findStat('total_kills_glock')} kills</p>
                         <p>FiveSeven: ${findStat('total_kills_fiveseven')} kills</p>
                         <p>USP: ${findStat('total_kills_hkp2000')} kills</p>
-                        <p>P2000: ${findStat('total_kills_hkp2000')} kills</p>
                         <p>Xm1014: ${findStat('total_kills_xm1014')} kills</p>
                         <p>Mac10: ${findStat('total_kills_mac10')} kills</p>
                         <p>Ump45: ${findStat('total_kills_ump45')} kills</p>
@@ -83,7 +82,6 @@ function fetchPlayerStats() {
                         <p>Taser: ${findStat('total_kills_taser')} kills</p>
                         <p>Decoy: ${findStat('total_kills_decoy')} kills</p>
                         <p>Molotov: ${findStat('total_kills_molotov')} kills</p>
-                        <p>M4a1S: ${findStat('total_kills_m4a1')} kills</p>
                     </div>         
                 </div>           
             `;
@@ -112,10 +110,9 @@ function fetchMatchHistory() {
 
             // Recent Performance
             const matchHistoryHTML = `
-                <div class="map-stats">
-                    <h2>Map stats and achievements</h2>
+                <div class="map-stats-container">
                     <div class="map-stats">
-                        <h3>Top Maps - Round Wins</h3>
+                        <h3>Top Maps - Every gamemode</h3>
                         <p>Dust2: ${getStat('total_wins_map_de_dust2')} wins</p>
                         <p>Inferno: ${getStat('total_wins_map_de_inferno')} wins</p>
                         <p>Nuke: ${getStat('total_wins_map_de_nuke')} wins</p>
@@ -165,13 +162,17 @@ function fetchPlayerInfo() {
             const player = data.response.players[0];
             playerInfoContainer.innerHTML = `
                 <div class="player-info">
-                    <h2>Player Info</h2>
-                    <img src="${player.avatarfull}" alt="Player Avatar" />
-                    <p>Player Name: ${player.personaname}</p>
-                    <p>Steam ID: ${player.steamid}</p>
-                    <p>Profile URL: <a href="${player.profileurl}" target="_blank">${player.profileurl}</a></p>
-                    <p>Country: ${player.loccountrycode}</p>
-                    <p>State: ${player.locstatecode}</p>
+                    <div class="player-image">
+                        <img src="${player.avatarfull}" alt="Player Avatar" />
+                    </div>
+                    <div class="info">
+                        <h2>Player Info</h2>
+                        <p>Player Name: ${player.personaname}</p>
+                        <p>Steam ID: ${player.steamid}</p>
+                        <p>Profile URL: <a href="${player.profileurl}" target="_blank">${player.profileurl}</a></p>
+                        <p>Country: ${player.loccountrycode}</p>
+                        <p>State: ${player.locstatecode}</p>
+                    </div>
                 </div>
             `;
         })
@@ -201,8 +202,7 @@ function fetchRecentGames() {
                 <div class="recent-games">
                     <h2>Recent CS2 Activity</h2>
                     ${cs2Games.length > 0 ? `
-                        <p>Last 2 weeks:</p>
-                        <p>Playtime: ${Math.round(cs2Games[0].playtime_2weeks / 60)} hours</p>
+                        <p>Last 2 weeks: ${Math.round(cs2Games[0].playtime_2weeks / 60)} hours</p>
                         <p>Total Playtime: ${Math.round(cs2Games[0].playtime_forever / 60)} hours</p>
                     ` : '<p>No recent CS2 activity</p>'}
                 </div>

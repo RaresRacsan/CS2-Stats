@@ -77,3 +77,18 @@ section:hover {
     overflow-y: visible;
     height: auto;
 }
+
+.map-stats-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+#map-stats,
+#achievements {
+    flex: 1;
+    padding: 20px;
+    border-radius: 8px;
+    min-height: 200px;
+}
