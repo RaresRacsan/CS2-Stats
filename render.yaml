@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: cs2-stats
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: STEAM_API_KEY
+        sync: false
+    staticPublishPath: ./public
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
