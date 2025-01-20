@@ -1,5 +1,8 @@
 const urlParams = new URLSearchParams(window.location.search);
 const playerId = urlParams.get('id');
+const API_BASE_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:3000' 
+    : 'https://cs2-stats.onrender.com';
 
 if (!playerId) {
     window.location.href = 'index.html';
@@ -9,7 +12,7 @@ function fetchPlayerStats() {
     const statsContainer = document.getElementById('stats');
     statsContainer.innerHTML = '<p>Loading stats...</p>';
 
-    fetch(`http://localhost:3000/api/player-stats/${playerId}`)
+    fetch(`${API_BASE_URL}/api/player-stats/${playerId}`)
         .then(response => response.json())
         .then(data => {
             if (!data.playerstats?.stats) {
@@ -95,7 +98,7 @@ function fetchMatchHistory() {
     const matchHistoryContainer = document.getElementById('map-stats');
     matchHistoryContainer.innerHTML = '<p>Loading stats...</p>';
 
-    fetch(`http://localhost:3000/api/player-stats/${playerId}`)
+    fetch(`${API_BASE_URL}/api/player-stats/${playerId}`)
         .then(response => response.json())
         .then(data => {
             console.log('Response data:', data); // Debug log
@@ -149,8 +152,8 @@ function fetchPlayerInfo() {
     playerInfoContainer.innerHTML = '<p>Loading player info...</p>';
 
     Promise.all([
-        fetch(`http://localhost:3000/api/player-info/${playerId}`).then(res => res.json()),
-        fetch(`http://localhost:3000/api/recently-played/${playerId}`).then(res => res.json())
+        fetch(`${API_BASE_URL}/api/player-info/${playerId}`).then(res => res.json()),
+        fetch(`${API_BASE_URL}/api/recently-played/${playerId}`).then(res => res.json())
     ])
         .then(([playerData, recentData]) => {
             if (!playerData.response?.players?.[0]) {
