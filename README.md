@@ -25,9 +25,9 @@ A modern web application that provides detailed Counter-Strike 2 statistics for 
 
 ## 📸 Screenshots
 
-![Main Page](screenshots/main-page.png)
-![Stats Page](screenshots/stats-page.png)
-![ID Finder](screenshots/id-finder.png)
+![Main Page](screenshots/main-page.PNG)
+![Stats Page](screenshots/stats-page.PNG)
+![ID Finder](screenshots/id-finder.PNG)
 
 ## 👤 Author
 
