@@ -58,6 +58,18 @@ app.get('/api/recently-played/:playerId', async (req, res) => {
     }
 });
 
+// Api route for Steam Id from vanity url
+app.get('/api/resolve-vanity/:vanityUrl', async (req, res) => {
+    try {
+        const response = await axios.get(
+            `https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?key=${API_KEY}&vanityurl=${req.params.vanityUrl}`
+        );
+        res.json(response.data);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on port: ${PORT}`);
 });

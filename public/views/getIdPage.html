@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS2 Stats Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+
+<body>
+    <div class="social-sharing">
+        <a href="https://discordapp.com/users/553950676246331412" class="social-btn discord" target="_blank"
+            title="Share on Discord">
+            <img src="/icons/discord.png" alt="Discord">
+        </a>
+        <a href="https://www.instagram.com/raresracsan/" class="social-btn instagram" target="_blank"
+            title="Share on Instagram">
+            <img src="/icons/instagram.png" alt="Instagram">
+        </a>
+    </div>
+    <div class="login-container">
+
+        <h2 class="subtitle">Find your SteamId now</h2>
+        <h1 class="title">SteamId finder</h1>
+        <form id="steamIdForm" onsubmit="handleSubmit(event)">
+            <input type="text" id="steamUrl" placeholder="Enter Steam URL" required>
+            <button type="submit">View SteamId</button>
+        </form>
+        <p class="secondary-message">
+            Found it? Go back to the <a href="../index.html">main page.
+            </a>
+        </p>
+    </div>
+
+
+    <script>
+        function extractSteamIdentifier(steamUrl) {
+            try {
+                const url = new URL(steamUrl);
+                const pathParts = url.pathname.split('/').filter(Boolean);
+
+                // Handle /id/[vanityname] pattern
+                if (pathParts[0] === 'id') {
+                    return { type: 'vanity', value: pathParts[1] };
+                }
+
+                // Handle /profiles/[steamid] pattern
+                if (pathParts[0] === 'profiles') {
+                    return { type: 'steamid', value: pathParts[1] };
+                }
+
+                return null;
+            } catch (error) {
+                // If input is not a URL, check if it's already a Steam ID or vanity name
+                if (/^\d{17}$/.test(steamUrl)) {
+                    return { type: 'steamid', value: steamUrl };
+                }
+                return { type: 'vanity', value: steamUrl.replace(/[^a-zA-Z0-9_-]/g, '') };
+            }
+        }
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            const steamUrl = document.getElementById('steamUrl').value;
+            const resultDiv = document.createElement('div');
+            resultDiv.className = 'result-message';
+
+            try {
+                const identifier = extractSteamIdentifier(steamUrl);
+                if (!identifier) {
+                    throw new Error('Invalid Steam URL format');
+                }
+
+                if (identifier.type === 'steamid') {
+                    // Direct Steam ID found
+                    resultDiv.innerHTML = `
+                <p>Steam ID: ${identifier.value}</p>
+                <button onclick="copyToClipboard('${identifier.value}')">Copy ID</button>
+            `;
+                } else {
+                    // Resolve vanity URL
+                    const response = await fetch(`/api/resolve-vanity/${identifier.value}`);
+                    const data = await response.json();
+
+                    if (data.response && data.response.steamid) {
+                        resultDiv.innerHTML = `
+                    <p>Vanity URL: ${identifier.value}</p>
+                    <p>Steam ID: ${data.response.steamid}</p>
+                    <button onclick="copyToClipboard('${data.response.steamid}')">Copy ID</button>
+                `;
+                    } else {
+                        resultDiv.innerHTML = '<p class="error">Could not find Steam ID. Please check the URL and try again.</p>';
+                    }
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="error">Error: ${error.message}</p>`;
+            }
+
+            // Remove any existing result
+            const existingResult = document.querySelector('.result-message');
+            if (existingResult) {
+                existingResult.remove();
+            }
+
+            // Add new result
+            document.getElementById('steamIdForm').appendChild(resultDiv);
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+            alert('Steam ID copied to clipboard!');
+        }
+    </script>
+</body>
+
+</html>
