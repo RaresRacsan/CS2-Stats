@@ -30,6 +30,9 @@ section {
     border: 1px solid #FF8A00;
     display: flex;
     gap: 20px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .section-1,
@@ -64,12 +67,22 @@ section:hover {
     border-radius: 8px;
 }
 
+.section-1 {
+    flex-direction: column;
+}
+
 #player-info,
 #recent-games {
-    flex: 1;
+    margin-top: 10px;
     padding: 20px;
+    max-width: 600px;
     border-radius: 8px;
-    min-height: 200px;
+    display: flex;
+}
+
+a {
+    color: #FF8A00;
+    text-decoration: none;
 }
 
 .section-2 {
@@ -91,4 +104,43 @@ section:hover {
     padding: 20px;
     border-radius: 8px;
     min-height: 200px;
+    max-width: 600px;
+}
+
+.player-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.player-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.player-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #FF8A00;
+}
+
+.player-details {
+    width: 100%;
+    text-align: center;
+}
+
+.recent-activity {
+    width: 100%;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 138, 0, 0.3);
+}
+
+.text-center {
+    text-align: center;
 }

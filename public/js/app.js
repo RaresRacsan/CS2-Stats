@@ -29,26 +29,7 @@ function fetchPlayerStats() {
 
             statsContainer.innerHTML = `
                 <div class="stats-container">
-                    <div class="general-stats">
-                        <h3>Player Stats Overview</h3>
-                        <p>Total Matches: ${findStat('total_matches_played')}</p>
-                        <p>Matches Won: ${findStat('total_matches_won')}</p>
-                        <p>Win Rate: ${((findStat('total_matches_won') / findStat('total_matches_played')) * 100).toFixed(1)}%</p>
-                        <p>Total Kills: ${findStat('total_kills')}</p>
-                        <p>Total Deaths: ${findStat('total_deaths')}</p>
-                        <p>K/D Ratio: ${(findStat('total_kills') / findStat('total_deaths')).toFixed(2)}</p>
-                        <p>Headshots: ${findStat('total_kills_headshot')}</p>
-                        <p>Accuracy: ${accuracy}%</p>
-                        <p>MVPs: ${findStat('total_mvps')}</p>
-                        <p>Total damage done: ${findStat('total_damage_done')}</p>
-                        <p>Total money earned: $${findStat('total_money_earned')}</p>
-                        <p>Total planted bombs: ${findStat('total_planted_bombs')}</p>
-                        <p>Total defused bombs: ${findStat('total_defused_bombs')}</p>
-                        <p>Enemy Weapon: ${findStat('total_kills_enemy_weapon')} kills</p>
-                        <p>Total resqued hostages: ${findStat('total_rescued_hostages')}</p>
-                    </div>
-
-                    <div class="weapon-stats">
+                <div class="weapon-stats">
                         <h3>Top Weapons</h3>
                         <p>AK-47: ${findStat('total_kills_ak47')} kills</p>
                         <p>AWP: ${findStat('total_kills_awp')} kills</p>
@@ -82,7 +63,25 @@ function fetchPlayerStats() {
                         <p>Taser: ${findStat('total_kills_taser')} kills</p>
                         <p>Decoy: ${findStat('total_kills_decoy')} kills</p>
                         <p>Molotov: ${findStat('total_kills_molotov')} kills</p>
-                    </div>         
+                    </div> 
+                    <div class="general-stats">
+                        <h3>Player Stats Overview</h3>
+                        <p>Total Matches: ${findStat('total_matches_played')}</p>
+                        <p>Matches Won: ${findStat('total_matches_won')}</p>
+                        <p>Win Rate: ${((findStat('total_matches_won') / findStat('total_matches_played')) * 100).toFixed(1)}%</p>
+                        <p>Total Kills: ${findStat('total_kills')}</p>
+                        <p>Total Deaths: ${findStat('total_deaths')}</p>
+                        <p>K/D Ratio: ${(findStat('total_kills') / findStat('total_deaths')).toFixed(2)}</p>
+                        <p>Headshots: ${findStat('total_kills_headshot')}</p>
+                        <p>Accuracy: ${accuracy}%</p>
+                        <p>MVPs: ${findStat('total_mvps')}</p>
+                        <p>Total damage done: ${findStat('total_damage_done')}</p>
+                        <p>Total money earned: $${findStat('total_money_earned')}</p>
+                        <p>Total planted bombs: ${findStat('total_planted_bombs')}</p>
+                        <p>Total defused bombs: ${findStat('total_defused_bombs')}</p>
+                        <p>Enemy Weapon: ${findStat('total_kills_enemy_weapon')} kills</p>
+                        <p>Total resqued hostages: ${findStat('total_rescued_hostages')}</p>
+                    </div>        
                 </div>           
             `;
         })
@@ -150,36 +149,45 @@ function fetchPlayerInfo() {
     const playerInfoContainer = document.getElementById('player-info');
     playerInfoContainer.innerHTML = '<p>Loading player info...</p>';
 
-    fetch(`http://localhost:3000/api/player-info/${playerId}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log('Player Info:', data);
+    Promise.all([
+        fetch(`http://localhost:3000/api/player-info/${playerId}`).then(res => res.json()),
+        fetch(`http://localhost:3000/api/recently-played/${playerId}`).then(res => res.json())
+    ])
+    .then(([playerData, recentData]) => {
+        if (!playerData.response?.players?.[0]) {
+            throw new Error('Player not found');
+        }
 
-            if (!data.response?.players) {
-                throw new Error('Invalid API response format');
-            }
+        const player = playerData.response.players[0];
+        const cs2Games = recentData.response?.games?.filter(game => game.appid === 730) || [];
 
-            const player = data.response.players[0];
-            playerInfoContainer.innerHTML = `
-                <div class="player-info">
-                    <div class="player-image">
-                        <img src="${player.avatarfull}" alt="Player Avatar" />
-                    </div>
-                    <div class="info">
-                        <h2>Player Info</h2>
-                        <p>Player Name: ${player.personaname}</p>
+        playerInfoContainer.innerHTML = `
+            <div class="player-container">
+                <div class="player-header">
+                    <img src="${player.avatarfull}" alt="Player Avatar" class="player-avatar">
+                    <div class="player-details text-center">
+                        <h2>${player.personaname}</h2>
+                        <p>Status: ${player.personastate === 1 ? 'Online' : 'Offline'}</p>
+                        <p>Country: ${player.loccountrycode || 'Not specified'}</p>
                         <p>Steam ID: ${player.steamid}</p>
                         <p>Profile URL: <a href="${player.profileurl}" target="_blank">${player.profileurl}</a></p>
-                        <p>Country: ${player.loccountrycode}</p>
-                        <p>State: ${player.locstatecode}</p>
                     </div>
                 </div>
-            `;
-        })
-        .catch(error => {
-            console.error('Error fetching player info:', error);
-            playerInfoContainer.innerHTML = `<p>Error loading player info: ${error.message}</p>`;
-        });
+                
+                <div class="recent-activity text-center">
+                    <h3>Recent CS2 Activity</h3>
+                    ${cs2Games.length > 0 ? `
+                        <p>Last 2 weeks: ${Math.round(cs2Games[0].playtime_2weeks / 60)} hours</p>
+                        <p>Total Playtime: ${Math.round(cs2Games[0].playtime_forever / 60)} hours</p>
+                    ` : '<p>No recent CS2 activity</p>'}
+                </div>
+            </div>
+        `;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        playerInfoContainer.innerHTML = `<p>Error loading player info: ${error.message}</p>`;
+    });
 }
 
 function fetchRecentGames() {
@@ -216,7 +224,6 @@ function fetchRecentGames() {
         });
 }
 
-fetchRecentGames();
 fetchPlayerInfo();
 fetchPlayerStats();
 fetchMatchHistory();
