@@ -111,28 +111,27 @@ function fetchMatchHistory() {
             const matchHistoryHTML = `
                 <div class="map-stats-container">
                     <div class="map-stats">
-                        <h3>Top Maps - Every gamemode</h3>
+                        <h2>Top Maps</h3>
+                        <p>Cobblestone: ${getStat('total_wins_map_de_cbble')} wins</p>
                         <p>Dust2: ${getStat('total_wins_map_de_dust2')} wins</p>
                         <p>Inferno: ${getStat('total_wins_map_de_inferno')} wins</p>
-                        <p>Nuke: ${getStat('total_wins_map_de_nuke')} wins</p>
-                        <p>Vertigo: ${getStat('total_wins_map_de_vertigo')} wins</p>
                         <p>Italy: ${getStat('total_wins_map_cs_italy')} wins</p>
+                        <p>Nuke: ${getStat('total_wins_map_de_nuke')} wins</p>
                         <p>Office: ${getStat('total_wins_map_cs_office')} wins</p>
-                        <p>Cobblestone: ${getStat('total_wins_map_de_cbble')} wins</p>
                         <p>Train: ${getStat('total_wins_map_de_train')} wins</p>
+                        <p>Vertigo: ${getStat('total_wins_map_de_vertigo')} wins</p>
                     </div>
 
                     <div class="achievements">
-                        <h3>Achievements</h3>
+                        <h2>Achievements</h3>
                         <p>Pistol Round Wins: ${getStat('total_wins_pistolround')}</p>
                         <p>Bombs Planted: ${getStat('total_planted_bombs')}</p>
                         <p>Bombs Defused: ${getStat('total_defused_bombs')}</p>
                         <p>Enemy Weapons Kills: ${getStat('total_kills_enemy_weapon')}</p>
                         <p>Total Weapons Donated: ${getStat('total_weapons_donated')}</p>
-                        <p>Total Broken Windows: ${getStat('total_broken_windows')}</p>
                         <p>Total kills when the enemy was blinded: ${getStat('total_kills_enemy_blinded')}</p>
-                        <p>Total kills knife fight: ${getStat('total_kills_knife_fight')}</p>
                         <p>Total kills against zoomed snipers: ${getStat('total_kills_against_zoomed_sniper')}</p>
+                        <p>Total Broken Windows: ${getStat('total_broken_windows')}</p>
                     </div>
                 </div>
             `;
@@ -153,15 +152,15 @@ function fetchPlayerInfo() {
         fetch(`http://localhost:3000/api/player-info/${playerId}`).then(res => res.json()),
         fetch(`http://localhost:3000/api/recently-played/${playerId}`).then(res => res.json())
     ])
-    .then(([playerData, recentData]) => {
-        if (!playerData.response?.players?.[0]) {
-            throw new Error('Player not found');
-        }
+        .then(([playerData, recentData]) => {
+            if (!playerData.response?.players?.[0]) {
+                throw new Error('Player not found');
+            }
 
-        const player = playerData.response.players[0];
-        const cs2Games = recentData.response?.games?.filter(game => game.appid === 730) || [];
+            const player = playerData.response.players[0];
+            const cs2Games = recentData.response?.games?.filter(game => game.appid === 730) || [];
 
-        playerInfoContainer.innerHTML = `
+            playerInfoContainer.innerHTML = `
             <div class="player-container">
                 <div class="player-header">
                     <img src="${player.avatarfull}" alt="Player Avatar" class="player-avatar">
@@ -183,44 +182,10 @@ function fetchPlayerInfo() {
                 </div>
             </div>
         `;
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        playerInfoContainer.innerHTML = `<p>Error loading player info: ${error.message}</p>`;
-    });
-}
-
-function fetchRecentGames() {
-    const recentGamesContainer = document.getElementById('recent-games');
-    recentGamesContainer.innerHTML = '<p>Loading recent games...</p>';
-
-    fetch(`http://localhost:3000/api/recently-played/${playerId}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log('Recent Games:', data);
-
-            if (!data.response?.games) {
-                throw new Error('No recent games found');
-            }
-
-            const games = data.response.games;
-            const cs2Games = games.filter(game => game.appid === 730);
-
-            const recentGamesHTML = `
-                <div class="recent-games">
-                    <h2>Recent CS2 Activity</h2>
-                    ${cs2Games.length > 0 ? `
-                        <p>Last 2 weeks: ${Math.round(cs2Games[0].playtime_2weeks / 60)} hours</p>
-                        <p>Total Playtime: ${Math.round(cs2Games[0].playtime_forever / 60)} hours</p>
-                    ` : '<p>No recent CS2 activity</p>'}
-                </div>
-            `;
-
-            recentGamesContainer.innerHTML = recentGamesHTML;
         })
         .catch(error => {
             console.error('Error:', error);
-            recentGamesContainer.innerHTML = `<p>Error loading recent games: ${error.message}</p>`;
+            playerInfoContainer.innerHTML = `<p>Error loading player info: ${error.message}</p>`;
         });
 }
 
