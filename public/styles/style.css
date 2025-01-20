@@ -36,12 +36,17 @@ body::after {
 
 .login-container {
     background: rgba(28, 28, 28, 0.95);
-    padding: 50px 60px;
+    padding: 2vh 3vw;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     text-align: center;
-    width: 500px;
+    width: 30vw;
+    max-width: 500px;
+    height: auto;
+    position: relative;
     z-index: 1;
+    transform: scale(0.8);
+    transform-origin: center;
 }
 
 .subtitle {
@@ -193,8 +198,8 @@ button:hover {
 
 .social-sharing {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    bottom: 1px;
+    right: 1px;
     display: flex;
     gap: 10px;
     z-index: 10;
