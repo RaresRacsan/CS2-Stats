@@ -218,10 +218,16 @@ button:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.social-btn img {
+.social-btn.discord img,
+.social-btn.instagram img{
     width: 24px;
     height: 24px;
     filter: invert(1);
+}
+
+.social-btn.github img {
+    width: 24px;
+    height: 24px;
 }
 
 .social-btn.discord:hover {
@@ -231,6 +237,11 @@ button:hover {
 
 .social-btn.instagram:hover {
     background-color: #E1306C;
+    transform: scale(1.1);
+}
+
+.social-btn.github:hover {
+    background-color: #0d1117;
     transform: scale(1.1);
 }
 
