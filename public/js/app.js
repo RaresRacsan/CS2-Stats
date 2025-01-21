@@ -8,6 +8,51 @@ if (!playerId) {
     window.location.href = 'index.html';
 }
 
+function fetchPlayerInfo() {
+    const playerInfoContainer = document.getElementById('player-info');
+    playerInfoContainer.innerHTML = '<p>Loading player info...</p>';
+
+    Promise.all([
+        fetch(`${API_BASE_URL}/api/player-info/${playerId}`).then(res => res.json()),
+        fetch(`${API_BASE_URL}/api/recently-played/${playerId}`).then(res => res.json())
+    ])
+        .then(([playerData, recentData]) => {
+            if (!playerData.response?.players?.[0]) {
+                throw new Error('Player not found');
+            }
+
+            const player = playerData.response.players[0];
+            const cs2Games = recentData.response?.games?.filter(game => game.appid === 730) || [];
+
+            playerInfoContainer.innerHTML = `
+            <div class="player-container">
+                <div class="player-header">
+                    <img src="${player.avatarfull}" alt="Player Avatar" class="player-avatar">
+                    <div class="player-details text-center">
+                        <h2>${player.personaname}</h2>
+                        <p>Status: ${player.personastate === 1 ? 'Online' : 'Offline'}</p>
+                        <p>Country: ${player.loccountrycode || 'Not specified'}</p>
+                        <p>Steam ID: ${player.steamid}</p>
+                        <p>Profile URL: <a href="${player.profileurl}" target="_blank">${player.profileurl}</a></p>
+                    </div>
+                </div>
+                
+                <div class="recent-activity text-center">
+                    <h3>Recent CS2 Activity</h3>
+                    ${cs2Games.length > 0 ? `
+                        <p>Last 2 weeks: ${Math.round(cs2Games[0].playtime_2weeks / 60)} hours</p>
+                        <p>Total Playtime: ${Math.round(cs2Games[0].playtime_forever / 60)} hours</p>
+                    ` : '<p>No recent CS2 activity</p>'}
+                </div>
+            </div>
+        `;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            playerInfoContainer.innerHTML = `<p>Error loading player info: ${error.message}</p>`;
+        });
+}
+
 function fetchPlayerStats() {
     const statsContainer = document.getElementById('stats');
     statsContainer.innerHTML = '<p>Loading stats...</p>';
@@ -101,7 +146,7 @@ function fetchMatchHistory() {
     fetch(`${API_BASE_URL}/api/player-stats/${playerId}`)
         .then(response => response.json())
         .then(data => {
-            console.log('Response data:', data); // Debug log
+            console.log('Response data:', data);
 
             if (!data.playerstats?.stats) {
                 throw new Error('Invalid stats format');
@@ -114,7 +159,7 @@ function fetchMatchHistory() {
             const matchHistoryHTML = `
                 <div class="map-stats-container">
                     <div class="map-stats">
-                        <h2>Top Maps</h3>
+                        <h3>Top Maps</h3>
                         <p>Cobblestone: ${getStat('total_wins_map_de_cbble')} wins</p>
                         <p>Dust2: ${getStat('total_wins_map_de_dust2')} wins</p>
                         <p>Inferno: ${getStat('total_wins_map_de_inferno')} wins</p>
@@ -126,7 +171,7 @@ function fetchMatchHistory() {
                     </div>
 
                     <div class="achievements">
-                        <h2>Achievements</h3>
+                        <h3>Achievements</h3>
                         <p>Pistol Round Wins: ${getStat('total_wins_pistolround')}</p>
                         <p>Bombs Planted: ${getStat('total_planted_bombs')}</p>
                         <p>Bombs Defused: ${getStat('total_defused_bombs')}</p>
@@ -144,51 +189,6 @@ function fetchMatchHistory() {
         .catch(error => {
             console.error('Error:', error);
             matchHistoryContainer.innerHTML = `<p>Error loading match history: ${error.message}</p>`;
-        });
-}
-
-function fetchPlayerInfo() {
-    const playerInfoContainer = document.getElementById('player-info');
-    playerInfoContainer.innerHTML = '<p>Loading player info...</p>';
-
-    Promise.all([
-        fetch(`${API_BASE_URL}/api/player-info/${playerId}`).then(res => res.json()),
-        fetch(`${API_BASE_URL}/api/recently-played/${playerId}`).then(res => res.json())
-    ])
-        .then(([playerData, recentData]) => {
-            if (!playerData.response?.players?.[0]) {
-                throw new Error('Player not found');
-            }
-
-            const player = playerData.response.players[0];
-            const cs2Games = recentData.response?.games?.filter(game => game.appid === 730) || [];
-
-            playerInfoContainer.innerHTML = `
-            <div class="player-container">
-                <div class="player-header">
-                    <img src="${player.avatarfull}" alt="Player Avatar" class="player-avatar">
-                    <div class="player-details text-center">
-                        <h2>${player.personaname}</h2>
-                        <p>Status: ${player.personastate === 1 ? 'Online' : 'Offline'}</p>
-                        <p>Country: ${player.loccountrycode || 'Not specified'}</p>
-                        <p>Steam ID: ${player.steamid}</p>
-                        <p>Profile URL: <a href="${player.profileurl}" target="_blank">${player.profileurl}</a></p>
-                    </div>
-                </div>
-                
-                <div class="recent-activity text-center">
-                    <h3>Recent CS2 Activity</h3>
-                    ${cs2Games.length > 0 ? `
-                        <p>Last 2 weeks: ${Math.round(cs2Games[0].playtime_2weeks / 60)} hours</p>
-                        <p>Total Playtime: ${Math.round(cs2Games[0].playtime_forever / 60)} hours</p>
-                    ` : '<p>No recent CS2 activity</p>'}
-                </div>
-            </div>
-        `;
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            playerInfoContainer.innerHTML = `<p>Error loading player info: ${error.message}</p>`;
         });
 }
 
