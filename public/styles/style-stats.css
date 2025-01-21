@@ -177,6 +177,13 @@ a {
     border-bottom: 1px solid rgba(255, 138, 0, 0.3);
 }
 
+.general-stats h4,
+.weapon-stats h4 {
+    color: #FF8A00;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
 .general-stats p,
 .weapon-stats p {
     margin: 8px 0;
@@ -244,4 +251,20 @@ a {
 .achievements p:hover {
     background: rgba(255, 138, 0, 0.1);
     transform: translateX(5px);
+}
+
+.online {
+    color: #4CAF50;
+}
+
+.offline {
+    color: #f44336;
+}
+
+.positive-stat {
+    color: #4CAF50;
+}
+
+.negative-stat {
+    color: #f44336;
 }
