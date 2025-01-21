@@ -249,7 +249,6 @@ function fetchPlayerStats() {
                             <p>Total defused bombs: ${findStat('total_defused_bombs')}</p>
                         </div>
                         <p>Total resqued hostages: ${findStat('total_rescued_hostages')}</p>
-                        <p>Total money earned: $${findStat('total_money_earned')}</p>
 
                         <br>
 
@@ -301,10 +300,8 @@ function fetchMapStatsAndAchievements() {
                     <div class="achievements">
                         <h3>Achievements</h3>
                         <p>Pistol Round Wins: ${getStat('total_wins_pistolround')}</p>
-                        <p>Bombs Planted: ${getStat('total_planted_bombs')}</p>
-                        <p>Bombs Defused: ${getStat('total_defused_bombs')}</p>
-                        <p>Enemy Weapons Kills: ${getStat('total_kills_enemy_weapon')}</p>
                         <p>Total Weapons Donated: ${getStat('total_weapons_donated')}</p>
+                        <p>Total money earned: $${getStat('total_money_earned')}</p>
                         <p>Total kills when the enemy was blinded: ${getStat('total_kills_enemy_blinded')}</p>
                         <p>Total kills against zoomed snipers: ${getStat('total_kills_against_zoomed_sniper')}</p>
                         <p>Total Broken Windows: ${getStat('total_broken_windows')}</p>
