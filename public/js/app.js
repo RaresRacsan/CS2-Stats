@@ -18,7 +18,7 @@ function fetchPlayerInfo() {
     ])
         .then(([playerData, recentData]) => {
             if (!playerData.response?.players?.[0]) {
-                throw new Error('Player not found');
+                throw new Error(data.error);
             }
 
             const player = playerData.response.players[0];
@@ -61,7 +61,7 @@ function fetchPlayerStats() {
         .then(response => response.json())
         .then(data => {
             if (!data.playerstats?.stats) {
-                throw new Error('Invalid API response format');
+                throw new Error(data.error);
             }
 
             console.log('Full Player Stats:', data);
@@ -157,7 +157,7 @@ function fetchPlayerStats() {
         });
 }
 
-function fetchMatchHistory() {
+function fetchMapStatsAndAchievements() {
     const matchHistoryContainer = document.getElementById('map-stats');
     matchHistoryContainer.innerHTML = '<p>Loading stats...</p>';
 
@@ -167,7 +167,7 @@ function fetchMatchHistory() {
             console.log('Response data:', data);
 
             if (!data.playerstats?.stats) {
-                throw new Error('Invalid stats format');
+                throw new Error(data.error);
             }
 
             const stats = data.playerstats.stats;
@@ -212,4 +212,4 @@ function fetchMatchHistory() {
 
 fetchPlayerInfo();
 fetchPlayerStats();
-fetchMatchHistory();
+fetchMapStatsAndAchievements();
