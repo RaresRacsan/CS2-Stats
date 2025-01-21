@@ -79,40 +79,144 @@ function fetchPlayerStats() {
                 <div class="stats-container">
                 <div class="weapon-stats">
                         <h3>Top Weapons</h3>
-                        <p>AK-47: ${findStat('total_kills_ak47')} kills</p>
-                        <p>AWP: ${findStat('total_kills_awp')} kills</p>
-                        <p>M4A4: ${findStat('total_kills_m4a1')} kills</p>
-                        <p>Desert Eagle: ${findStat('total_kills_deagle')} kills</p>
-                        <p>USP: ${findStat('total_kills_hkp2000')} kills</p>
-                        <p>Glock: ${findStat('total_kills_glock')} kills</p>
-                        <p>P90: ${findStat('total_kills_p90')} kills</p>
-                        <p>SG: ${findStat('total_kills_sg556')} kills</p>
-                        <p>Aug: ${findStat('total_kills_aug')} kills</p>
-                        <p>Famas: ${findStat('total_kills_famas')} kills</p>
-                        <p>Galil: ${findStat('total_kills_galilar')} kills</p>
-                        <p>FiveSeven: ${findStat('total_kills_fiveseven')} kills</p>
-                        <p>Tec9: ${findStat('total_kills_tec9')} kills</p>
-                        <p>P250: ${findStat('total_kills_p250')} kills</p>
-                        <p>Mac10: ${findStat('total_kills_mac10')} kills</p>
-                        <p>Ump45: ${findStat('total_kills_ump45')} kills</p>
-                        <p>Mp7: ${findStat('total_kills_mp7')} kills</p>
-                        <p>Mp9: ${findStat('total_kills_mp9')} kills</p>
-                        <p>Bizon: ${findStat('total_kills_bizon')} kills</p>
-                        <p>XM1014: ${findStat('total_kills_xm1014')} kills</p>
-                        <p>Nova: ${findStat('total_kills_nova')} kills</p>
-                        <p>MAG7: ${findStat('total_kills_mag7')} kills</p>
-                        <p>SawedOff: ${findStat('total_kills_sawedoff')} kills</p>
-                        <p>Negev: ${findStat('total_kills_negev')} kills</p>
-                        <p>M249: ${findStat('total_kills_m249')} kills</p>
-                        <p>Scar: ${findStat('total_kills_scar20')} kills</p>
-                        <p>SSG: ${findStat('total_kills_ssg08')} kills</p>
-                        <p>Knife: ${findStat('total_kills_knife')} kills</p>
-                        <p>Grenade: ${findStat('total_kills_hegrenade')} kills</p>
-                        <p>Molotov: ${findStat('total_kills_molotov')} kills</p>
-                        <p>Taser: ${findStat('total_kills_taser')} kills</p>
-                        <p class="${findStat('total_kills_decoy') > 0 ? 'positive-stat' : ''}">Decoy: ${findStat('total_kills_decoy')} kills</p>
-
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/ak47.svg" alt="AK-47" class="weapon-icon">
+                            <p>AK-47: ${findStat('total_kills_ak47')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/awp.svg" alt="AWP" class="weapon-icon">
+                            <p>AWP: ${findStat('total_kills_awp')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/m4a4.svg" alt="M4a4" class="weapon-icon">
+                            <p>M4A4: ${findStat('total_kills_m4a1')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/deagle.svg" alt="Deagle" class="weapon-icon">
+                            <p>Desert Eagle: ${findStat('total_kills_deagle')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/usp_s.svg" alt="USP-S" class="weapon-icon">
+                            <p>USP-S: ${findStat('total_kills_hkp2000')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/glock.svg" alt="Glock" class="weapon-icon">
+                            <p>Glock: ${findStat('total_kills_glock')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/p90.svg" alt="P90" class="weapon-icon">
+                            <p>P90: ${findStat('total_kills_p90')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/sg.svg" alt="SG" class="weapon-icon">
+                            <p>SG: ${findStat('total_kills_sg556')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/aug.svg" alt="Aug" class="weapon-icon">
+                            <p>Aug: ${findStat('total_kills_aug')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/famas.svg" alt="Famas" class="weapon-icon">
+                            <p>Famas: ${findStat('total_kills_famas')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/galil.svg" alt="Galil" class="weapon-icon">
+                            <p>Galil: ${findStat('total_kills_galilar')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/fiveseven.svg" alt="Five-Seven" class="weapon-icon">
+                            <p>FiveSeven: ${findStat('total_kills_fiveseven')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/tec9.svg" alt="Tec-9" class="weapon-icon">
+                            <p>Tec9: ${findStat('total_kills_tec9')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/p250.svg" alt="P250" class="weapon-icon">
+                            <p>P250: ${findStat('total_kills_p250')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/mac10.svg" alt="Mac-10" class="weapon-icon">
+                            <p>Mac10: ${findStat('total_kills_mac10')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/ump45.svg" alt="Ump45" class="weapon-icon">
+                            <p>Ump45: ${findStat('total_kills_ump45')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/mp7.svg" alt="Mp7" class="weapon-icon">
+                            <p>Mp7: ${findStat('total_kills_mp7')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/mp9.svg" alt="Mp9" class="weapon-icon">
+                            <p>Mp9: ${findStat('total_kills_mp9')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/bizon.svg" alt="Bizon" class="weapon-icon">
+                            <p>Bizon: ${findStat('total_kills_bizon')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/xm1014.svg" alt="XM1014" class="weapon-icon">
+                            <p>XM1014: ${findStat('total_kills_xm1014')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/nova.svg" alt="Nova" class="weapon-icon">
+                            <p>Nova: ${findStat('total_kills_nova')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/mag7.svg" alt="MAG7" class="weapon-icon">
+                            <p>MAG7: ${findStat('total_kills_mag7')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/sawedoff.svg" alt="SawedOff" class="weapon-icon">
+                            <p>SawedOff: ${findStat('total_kills_sawedoff')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/negev.svg" alt="Negev" class="weapon-icon">
+                            <p>Negev: ${findStat('total_kills_negev')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/m249.svg" alt="M249" class="weapon-icon">
+                            <p>M249: ${findStat('total_kills_m249')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/scar20.svg" alt="Scar" class="weapon-icon">
+                            <p>Scar: ${findStat('total_kills_scar20')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/ssg08.svg" alt="SSG" class="weapon-icon">
+                            <p>SSG: ${findStat('total_kills_ssg08')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/elite.svg" alt="Dual Berettas" class="weapon-icon">
+                            <p>Dual Berettas: ${findStat('total_kills_elite')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/g3sg1.svg" alt="G3SG1" class="weapon-icon">
+                            <p>G3SG1: ${findStat('total_kills_g3sg1')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/knife.svg" alt="Knife" class="weapon-icon">
+                            <p>Knife: ${findStat('total_kills_knife')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/hegrenade.svg" alt="Grenade" class="weapon-icon">
+                            <p>Grenade: ${findStat('total_kills_hegrenade')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/molotov.svg" alt="Molotov" class="weapon-icon">
+                            <p>Molotov: ${findStat('total_kills_molotov')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/taser.svg" alt="Taser" class="weapon-icon">
+                            <p>Taser: ${findStat('total_kills_taser')} kills</p>
+                        </div>
+                        <div class="weapon-stat">
+                        <img src="../icons/Cs2Weapons/decoy.svg" alt="Decoy" class="weapon-icon">
+                            <p class="${findStat('total_kills_decoy') > 0 ? 'positive-stat' : ''}">Decoy: ${findStat('total_kills_decoy')} kills</p>
+                        </div>
                     </div> 
+
                     <div class="general-stats">
                         <h3>Player Stats Overview</h3>
                         <h4>General Performance</h4>
@@ -136,8 +240,14 @@ function fetchPlayerStats() {
                         <br>
 
                         <h4>Tactical Contributions</h4>
-                        <p>Total planted bombs: ${findStat('total_planted_bombs')}</p>
-                        <p>Total defused bombs: ${findStat('total_defused_bombs')}</p>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/planted.svg" alt="Planted" class="weapon-icon">
+                            <p>Total planted bombs: ${findStat('total_planted_bombs')}</p>
+                        </div>
+                        <div class="weapon-stat">
+                            <img src="../icons/Cs2Weapons/defused.svg" alt="Defused" class="weapon-icon">
+                            <p>Total defused bombs: ${findStat('total_defused_bombs')}</p>
+                        </div>
                         <p>Total resqued hostages: ${findStat('total_rescued_hostages')}</p>
                         <p>Total money earned: $${findStat('total_money_earned')}</p>
 

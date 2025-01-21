@@ -289,3 +289,30 @@ a {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(255, 138, 0, 0.1);
 }
+
+.weapon-stat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.weapon-icon {
+    width: 30px;
+    height: 30px;
+    filter: invert(1);
+}
+
+.weapon-stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.weapon-stat:hover {
+    background: rgba(255, 138, 0, 0.1);
+    transform: translateX(5px);
+}
