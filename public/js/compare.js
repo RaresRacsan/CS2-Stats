@@ -74,7 +74,7 @@ function displayPlayerInfo(elementId, playerInfo, stats, comparisonResults, tota
         <p class="steam-id">Steam ID: ${playerInfo.steamid}</p>
         <p class="hours-played">Hours Played: ${derivedStats.hoursPlayed}</p>
         <br>
-        <p>Stats:</p>
+        <h3>Stats:</h3>
         <p style="color: ${getColor('kdr')}">K/D Ratio: ${derivedStats.kdr}</p>
         <p style="color: ${getColor('winRate')}">Win Rate: ${derivedStats.winRate}%</p>
         <p style="color: ${getColor('mvpPerMatch')}">MVPs per Match: ${derivedStats.mvpPerMatch}</p>
