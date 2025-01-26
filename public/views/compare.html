@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare CS2 Stats</title>
+    <link rel="stylesheet" href="/styles/compare-stats.css">
+</head>
+<body>
+    <div class="compare-container">
+        <h1 class="title">Compare CS2 Stats</h1>
+        <form id="compareForm" onsubmit="handleCompareSubmit(event)">
+            <input type="text" id="player1" placeholder="Enter Player 1 Steam ID" required>
+            <input type="text" id="player2" placeholder="Enter Player 2 Steam ID" required>
+            <button type="submit">Compare Stats</button>
+        </form>
+        <div class="stats-container">
+            <div id="player1-stats" class="player-stats"></div>
+            <div id="player2-stats" class="player-stats"></div>
+        </div>
+        <p class="secondary-message">
+            Enough? Go back to the <a href="../index.html">main page.</a>
+        </p>
+    </div>
+    <script src="/js/compare.js"></script>
+</body>
+</html>

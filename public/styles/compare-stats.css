@@ -1,0 +1,65 @@
+body {
+    overflow-y: auto;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(28, 28, 28, 0.95);
+    color: white;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+.compare-container {
+    background: rgba(28, 28, 28, 0.95);
+    padding: 2vh 3vw;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 80vw;
+    max-width: 1200px;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.title {
+    font-size: 2em;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stats-container {
+    display: none; /* Initially hidden */
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.player-stats {
+    width: 45%;
+    background: rgba(40, 40, 40, 0.95);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+}
+
+.player-stats h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.player-stats p {
+    margin: 5px 0;
+}
+
+.player-stats img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
