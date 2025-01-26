@@ -69,10 +69,12 @@ function displayPlayerInfo(elementId, playerInfo, stats, comparisonResults, tota
     };
 
     container.innerHTML = `
-        <h3>${playerInfo.personaname}</h3>
+        <h3 class="username">${playerInfo.personaname}</h3>
         <img src="${playerInfo.avatarfull}" alt="${playerInfo.personaname}">
-        <p>Steam ID: ${playerInfo.steamid}</p>
-        <p>Hours Played: ${derivedStats.hoursPlayed}</p>
+        <p class="steam-id">Steam ID: ${playerInfo.steamid}</p>
+        <p class="hours-played">Hours Played: ${derivedStats.hoursPlayed}</p>
+        <br>
+        <p>Stats:</p>
         <p style="color: ${getColor('kdr')}">K/D Ratio: ${derivedStats.kdr}</p>
         <p style="color: ${getColor('winRate')}">Win Rate: ${derivedStats.winRate}%</p>
         <p style="color: ${getColor('mvpPerMatch')}">MVPs per Match: ${derivedStats.mvpPerMatch}</p>
@@ -88,7 +90,8 @@ function displayPlayerInfo(elementId, playerInfo, stats, comparisonResults, tota
         <p style="color: ${getColor('totalKillsBlindedPerMatch')}">Kills when Enemy Blinded per Match: ${derivedStats.totalKillsBlindedPerMatch}</p>
         <p style="color: ${getColor('totalKillsZoomedSnipersPerMatch')}">Kills against Zoomed Snipers per Match: ${derivedStats.totalKillsZoomedSnipersPerMatch}</p>
         <p>Total Decoy Kills: ${derivedStats.totalDecoyKills}</p>
-        <p>Total Score: ${totalScore}</p>
+        <br>
+        <p class="total-score">Total Score: ${totalScore}</p>
     `;
 }
 

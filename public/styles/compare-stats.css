@@ -14,11 +14,11 @@ body {
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     text-align: center;
-    width: 80vw;
-    max-width: 1200px;
+    width: 90vw;
     margin: auto;
     position: relative;
     z-index: 1;
+    border: 1px solid #FF8A00;
 }
 
 .title {
@@ -33,11 +33,13 @@ form {
     gap: 10px;
 }
 
+
 .stats-container {
-    display: none; /* Initially hidden */
+    display: none;
     justify-content: space-between;
     margin-top: 20px;
 }
+
 
 .player-stats {
     width: 45%;
@@ -46,6 +48,12 @@ form {
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     color: #ffffff;
+    border: 1px solid #FF8A00;
+}
+
+.player-stats:hover {
+    border: 1px solid #ffa238;
+    background: rgba(40, 32, 28, 0.95);
 }
 
 .player-stats h3 {
@@ -62,4 +70,51 @@ form {
     height: 100px;
     border-radius: 50%;
     margin-bottom: 10px;
+    border: 3px solid #FF8A00;
+}
+
+.steam-id,
+.hours-played,
+.total-score {
+    color: #FF8A00; 
+}
+
+.secondary-message {
+    margin-top: 15px;
+    font-size: 1em;
+    color: #cccccc;
+    text-align: center;
+}
+
+.secondary-message a {
+    color: #FF8A00;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.secondary-message a:hover {
+    color: #ff9318;
+    text-decoration: underline;
+}
+
+.home-btn {
+    position: absolute;
+    top: 50px;
+    left: 40px;
+    padding: 8px 16px;
+    background: #FF8A00;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.home-btn:hover {
+    background: #ffa238;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 138, 0, 0.1);
 }
