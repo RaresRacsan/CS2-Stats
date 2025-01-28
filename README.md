@@ -10,6 +10,7 @@ A modern web application that provides detailed Counter-Strike 2 statistics for 
 - **Map Performance**: Track your win rates on different maps
 - **Achievement Tracking**: Monitor your CS2 achievements
 - **Recent Activity**: Check your recent playtime and performance
+- **Stat Comparison**: Add your friend's Steam Id and see who has better stats.
 
 ## 🛠️ Built With
 
@@ -28,6 +29,17 @@ A modern web application that provides detailed Counter-Strike 2 statistics for 
 ![Main Page](screenshots/main-page.PNG)
 ![Stats Page](screenshots/stats-page.PNG)
 ![ID Finder](screenshots/id-finder.PNG)
+
+## Local mode
+1. Clone the repository
+2. **npm install** the dependencies
+3. Create a **.env** file containing:
+```
+STEAM_API_KEY=your_steam_api_key
+PORT=3000
+```
+4. **npm start** the server
+5. Open your browser and navigate to `http://localhost:3000`.
 
 ## 👤 Author
 
